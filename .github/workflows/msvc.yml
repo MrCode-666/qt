@@ -37,7 +37,7 @@ jobs:
       - run: echo ${{ github.ref }}
       - uses: actions/upload-artifact@v4
         with:
-            name: output
+            name: helloworld
             path: ${{ env.build }}\world.txt
             compression-level: 9
       - name: Create Release
@@ -46,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ttt
+          tag_name: tag_ttt
           release_name: Release ttt
           body: |
             Test Release
@@ -60,8 +60,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.build }}/output.zip
-          asset_name: output.zip
+          asset_path: ${{ env.build }}\helloworld.zip
+          asset_name: helloworld.zip
           asset_content_type: application/zip
 
 
