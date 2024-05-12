@@ -39,19 +39,19 @@ jobs:
         with:
             name: helloworld
             path: ${{ env.build }}\world.txt
-            compression-level: 9
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: tag_ttt
-          release_name: Release ttt
-          body: |
-            Test Release
-            - First Change
-            - Second Change
+            compression-level: 6
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@latest
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: tag_ttt
+      #     release_name: Release ttt
+      #     body: |
+      #       Test Release
+      #       - First Change
+      #       - Second Change
           #attach : helloworld.zip
      #create-release --tag v1.0.0 --name "Version 1.0.0" --body "This is the body of the release." --attach release.tar.gz
       - name: Upload Artifact to Release
@@ -61,7 +61,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: helloworld.zip
+          asset_path: ${{ env.build }}\world.txt
           asset_name: helloworld.zip
           asset_content_type: application/zip
       - run: tree "D:\"
