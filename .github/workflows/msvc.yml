@@ -1,0 +1,32 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+#
+# Find more information at:
+# https://github.com/microsoft/msvc-code-analysis-action
+
+name: WindowsQTLib
+
+on:
+  workflow_dispatch:
+  
+env:
+  # Path to the CMake build directory.
+  build: '${{ github.workspace }}/build'
+
+
+
+jobs:
+  build-qt-lib:
+    name: Analyze
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/build-qt-lib@v4
+
+      - name: Configure CMake
+        run: echo ${{ env.build }}
+
+
