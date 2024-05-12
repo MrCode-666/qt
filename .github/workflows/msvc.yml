@@ -34,7 +34,6 @@ jobs:
       - run: md ${{ env.build }}
       - run: ps > ${{ env.build }}\world.txt
       - run: tree "D:\"> ${{ env.build }}\world.txt
-      - run: tree "E:\"> ${{ env.build }}\world.txt
       - uses: actions/upload-artifact@v4
         with:
             name: output
