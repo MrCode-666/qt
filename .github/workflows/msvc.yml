@@ -14,7 +14,7 @@ on:
 env:
   # Path to the CMake build directory.
   build: '${{ github.workspace }}\build'
-
+  
 
 
 jobs:
@@ -39,5 +39,28 @@ jobs:
             name: output
             path: ${{ env.build }}\world.txt
             compression-level: 9
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Test Release
+            - First Change
+            - Second Change
+     
+      - name: Upload Artifact to Release
+        id: upload_artifact
+        uses: actions/upload-release-asset@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.build }}/output.zip
+          asset_name: output.zip
+          asset_content_type: application/zip
 
 
