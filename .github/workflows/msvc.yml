@@ -52,16 +52,18 @@ jobs:
             Test Release
             - First Change
             - Second Change
-     
-      - name: Upload Artifact to Release
-        id: upload_artifact
-        uses: actions/upload-release-asset@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.build }}\helloworld.zip
-          asset_name: helloworld.zip
-          asset_content_type: application/zip
+          attach : helloworld.zip
+     #create-release --tag v1.0.0 --name "Version 1.0.0" --body "This is the body of the release." --attach release.tar.gz
+     # - name: Upload Artifact to Release
+     #   id: upload_artifact
+     #   uses: actions/upload-release-asset@latest
+     #   env:
+     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     #   with:
+     #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+     #     asset_path: ${{ env.build }}\helloworld.zip
+     #     asset_name: helloworld.zip
+     #     asset_content_type: application/zip
+      - run: tree "D:\"
 
 
