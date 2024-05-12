@@ -19,12 +19,12 @@ env:
 
 jobs:
   build-qt-lib:
-    name: Analyze
+    name: Build
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/build-qt-lib@v4
+      #- name: Checkout repository
+      #  uses: actions/checkout@v4
 
       - name: Configure CMake
         run: echo ${{ env.build }}
