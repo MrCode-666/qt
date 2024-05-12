@@ -34,6 +34,7 @@ jobs:
       - run: md ${{ env.build }}
       - run: ps > ${{ env.build }}\world.txt
       - run: tree "D:\"> ${{ env.build }}\world.txt
+      - run: echo ${{ github.ref }}
       - uses: actions/upload-artifact@v4
         with:
             name: output
@@ -45,8 +46,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ttt
+          release_name: Release ttt
           body: |
             Test Release
             - First Change
